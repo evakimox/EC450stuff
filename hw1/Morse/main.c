@@ -47,7 +47,7 @@ int main(void) {
 // ===== Watchdog Timer Interrupt Handler =====
 // This event handler is called to handle the watchdog timer interrupt,
 //    which is occurring regularly at intervals of about 8K/1.1MHz ~= 7.4ms.
-
+/*
 interrupt void WDT_button_handler(){
 	unsigned char b;
 	  	b= (P1IN & BUTTON);  // read the BUTTON bit
@@ -55,10 +55,16 @@ interrupt void WDT_button_handler(){
 	  		LED=(LED==0x01)?0x40:0x01; // toggle both LED's
 	  	}
 	  	last_button=b;    // remember button reading for next time.
-}
+}*/
 
 interrupt void WDT_interval_handler(){
 	blink_counter--;
+	if(P1IN&0x08){
+		LED = LED;
+	}
+	else{
+		LED ^= 0x41;
+	}
 	if (blink_counter==0){
 		switch(letter){
 
@@ -70,7 +76,7 @@ interrupt void WDT_interval_handler(){
 					i++;
 				}
 				else{
-					blink_counter=blink_interval;
+					blink_counter=2*blink_interval;
 					i++;
 				}
 			}
