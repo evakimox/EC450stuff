@@ -358,3 +358,194 @@ remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recomm
 ' '
 
 **** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 31: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 93: error #128: expected a statement
+"../main.c", line 114: warning #12-D: parsing restarts here after previous syntax error
+"../main.c", line 84: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../main.c", line 203: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 215: error #171: expected a declaration
+"../main.c", line 222: warning #12-D: parsing restarts here after previous syntax error
+"../main.c", line 11: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+"../main.c", line 222: warning #837-D: pragma can only be applied to a file level symbol, not 'WDT_interval_handler_ptr'
+2 errors detected in the compilation of "../main.c".
+
+>> Compilation failure
+gmake: *** [main.obj] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 31: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 84: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../main.c", line 203: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 216: error #171: expected a declaration
+"../main.c", line 222: warning #12-D: parsing restarts here after previous syntax error
+"../main.c", line 11: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+"../main.c", line 222: warning #837-D: pragma can only be applied to a file level symbol, not 'WDT_interval_handler_ptr'
+1 error detected in the compilation of "../main.c".
+
+>> Compilation failure
+gmake: *** [main.obj] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 31: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 84: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../main.c", line 203: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 11: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+'Finished building: ../main.c'
+' '
+'Building target: Morse.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"Morse.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Morse_linkInfo.xml" --rom_model -o "Morse.out"  "./main.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: Morse.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 40: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 214: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 12: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+'Finished building: ../main.c'
+' '
+'Building target: Morse.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"Morse.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Morse_linkInfo.xml" --rom_model -o "Morse.out"  "./main.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: Morse.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 31: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 205: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 11: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+'Finished building: ../main.c'
+' '
+'Building target: Morse.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"Morse.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Morse_linkInfo.xml" --rom_model -o "Morse.out"  "./main.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: Morse.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 31: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 205: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 11: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+'Finished building: ../main.c'
+' '
+'Building target: Morse.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"Morse.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Morse_linkInfo.xml" --rom_model -o "Morse.out"  "./main.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: Morse.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 31: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 206: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 11: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+'Finished building: ../main.c'
+' '
+'Building target: Morse.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"Morse.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Morse_linkInfo.xml" --rom_model -o "Morse.out"  "./main.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: Morse.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Morse ****
+
+"C:\\ti\\ccsv5\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"../main.c", line 30: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 204: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 10: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+'Finished building: ../main.c'
+' '
+'Building target: Morse.out'
+'Invoking: MSP430 Linker'
+"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"Morse.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Morse_linkInfo.xml" --rom_model -o "Morse.out"  "./main.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: Morse.out'
+' '
+
+**** Build Finished ****

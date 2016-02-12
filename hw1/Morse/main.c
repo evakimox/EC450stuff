@@ -7,9 +7,8 @@ volatile unsigned int longorshort;
 volatile unsigned int i=0;     			// i count flash times
 volatile unsigned int j=0;              // j control the letter processing
 volatile char letter;
-volatile unsigned int junk=42;
 char string[15] ="Hello Jingning";
-const int unitlength = 50;
+const int unitlength = 20;
 
 int main(void) {
 	  // setup the watchdog timer as an interval timer
@@ -82,7 +81,7 @@ interrupt void WDT_interval_handler(){
 
 		case 'l':
 			if(i<8){                      // flash 4 times
-				P1OUT^=1;
+				P1OUT ^= 1;
 				if(i==2||i==7){
 					blink_counter=blink_interval; // L has 2nd long other short
 					i++;
@@ -97,7 +96,6 @@ interrupt void WDT_interval_handler(){
 				j++;
 				letter = string[j];
 				i=0;
-				junk++;
 
 		case 'o':
 			if(i<6){                      // flash long 3 times
@@ -116,6 +114,7 @@ interrupt void WDT_interval_handler(){
 				j++;
 				letter = string[j];
 				i=0;
+
 		case ' ':
 			if(i<2){                      // flash short 4 times
 				//let it off

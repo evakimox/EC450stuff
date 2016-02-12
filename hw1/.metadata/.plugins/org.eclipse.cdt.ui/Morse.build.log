@@ -5,9 +5,9 @@
 'Building file: ../main.c'
 'Invoking: MSP430 Compiler'
 "C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --include_path="C:/ti/ccsv5/ccs_base/msp430/include" --include_path="C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
-"../main.c", line 31: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
-"../main.c", line 205: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
-"../main.c", line 11: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+"../main.c", line 30: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 204: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main.c", line 10: remark #1535-D: (ULP 8.1) variable "string" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
 'Finished building: ../main.c'
 ' '
 'Building target: Morse.out'
