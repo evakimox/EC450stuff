@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench version="2.0">
 <workbenchAdvisor/>
-<window height="768" maximized="true" width="1024" x="1030" y="174">
+<window height="768" maximized="true" width="1024" x="537" y="-23">
 <fastViewData fastViewLocation="1024">
 <orientation position="512" view="com.ti.ccstudio.system.setup.ui.views.TargetConfigurationView"/>
 </fastViewData>
@@ -40,7 +40,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/Jingning Zhang/Desktop/EC450stuff/hw1/Morse/main.c" title="main.c" tooltip="Morse/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Morse/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="543" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2217" selectionTopPixel="1334"/>
 </editor>
 </editors>
 <views>
@@ -690,7 +690,7 @@
 </folder>
 </info>
 <info folder="true" part="topRight" ratio="0.44984326" ratioLeft="1148" ratioRight="1404" relationship="2" relative="topLeft">
-<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.debug.ui.BreakpointView" appearance="2" expanded="2">
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="Registers"/>
@@ -720,8 +720,20 @@
 <item historyLabel="main.c" index="1">
 <position info="not_deleted" x="2429" y="13"/>
 </item>
-<item active="true" historyLabel="main.c" index="1">
+<item historyLabel="main.c" index="1">
 <position info="not_deleted" x="2937" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="1769" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="1515" y="11"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="391" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="1">
+<position info="not_deleted" x="1900" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
