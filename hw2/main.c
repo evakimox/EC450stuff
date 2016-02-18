@@ -1,47 +1,52 @@
-/******************************************************************************
- *                          MSP430G2553 ACLK Test
- *
- * Description: This code can be used to test if you have installed the
- *              32.768kHz crystal on your LaunchPad correctly. Using this code
- *              LED1 (on P1.0) will turn on for 1 second, and off for one
- *              second. You can verify this with either an oscilloscope, logic
- *              analyzer, or by inspection. Simple as that!
- *
- * 				This code was originally created for "NJC's MSP430
- * 				LaunchPad Blog".
- *
- * Author:	Nicholas J. Conn - http://msp430launchpad.com
- * Email:	webmaster at msp430launchpad.com
- * Date:	03-15-12
- ******************************************************************************/
+asm(" .length 10000");
+asm(" .width 132");
+/*
+* calibrator.c
+*
+* This program is intended to be used to calibrate the system DCO clock in the
+* debugger using the ACL as a time base.
+*
+* The procedure run_count runs a tight counting loop incrementing a 32 bit counter.
+* It enables the WDT interval interrupt driven by the ACL as a source.
+* The WDT handler sets a flag which is examined in the counting loop and which causes the
+* main program to reset and record its count in an array in memory.
+*
+* Created on: Feb 9, 2016
+* Author: Roscoe Giles
+*/
+#include <msp430g2553.h>
+#define N_samples 15
+unsigned long count[N_samples]; // count samples are stored in this array
+volatile int index;
 
-#include  <msp430g2553.h>
-
-unsigned int currentMinutes, currentSeconds;
-
-void main(void)
-{
-	WDTCTL = WDTPW + WDTHOLD;			// Stop WDT
-
-	BCSCTL1 |= DIVA_3;				// ACLK/8
-	BCSCTL3 |= XCAP_3;				//12.5pF cap- setting for 32768Hz crystal
-
-	P1DIR |= BIT0;					// set P1.0 (LED1) as output
-	P1OUT |= BIT0;					// P1.0 low
-
-	currentMinutes = 0;
-	currentSeconds = 0;
-
-	CCTL0 = CCIE;					// CCR0 interrupt enabled
-	CCR0 = 511;					// 512 -> 1 sec, 30720 -> 1 min
-	TACTL = TASSEL_1 + ID_3 + MC_1;			// ACLK, /8, upmode
-
-	_BIS_SR(LPM3_bits + GIE);			// Enter LPM3 w/ interrupt
+volatile int count_flag;
+unsigned long run_counter(){
+	unsigned long counter;
+	count_flag=1;
+	counter=0;
+	// setup WDT: source=ACL, clear counter, divide by 32K
+	WDTCTL = WDTPW+WDTTMSEL+WDTCNTCL+WDTSSEL;
+	//DCOCTL= MOD_3;
+	IFG1 &= ~WDTIFG; // clear WDT IFG
+	IE1 |= WDTIE; // enable WDT interrupt
+	while(count_flag) ++counter;
+	IE1 &= ~WDTIE; //disable WDT interrupt
+	return counter;
 }
 
-// Timer A0 interrupt service routine
-#pragma vector=TIMER0_A0_VECTOR
-__interrupt void Timer_A (void)
-{
-	P1OUT ^= BIT0;					// Toggle LED
+interrupt void WDT_handler(){
+	count_flag=0;
+}
+ISR_VECTOR(WDT_handler, ".int10")
+
+void main(){
+	WDTCTL=WDTPW+WDTHOLD; // disable WDT for now
+	index=0; // initial index for storage of data
+	_bis_SR_register(GIE); // enable global interrupts
+	while(1){
+		count[index++]=run_counter();
+		if (index>=N_samples){
+			index=0;
+		}
+	}
 }
