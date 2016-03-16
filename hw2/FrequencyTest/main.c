@@ -29,12 +29,12 @@ void main(){
 	WDTCTL=WDTPW+WDTHOLD; // disable WDT for now
 
 	//trying to adjust the clock:
-	/*
+
 	DCOCTL = 0x60;   //according to data sheet DCO=3 MOD=0 is closest to 10Mhz
 	//keep the first bit unchanged
 	//according to data sheet set RSEL bits (lower 4 bits) to be 1110 =14 will make it closest to 10Mhz
 	BCSCTL1 = 0x8E;
-	*/
+
 
 	index=0; // initial index for storage of data
 	_bis_SR_register(GIE); // enable global interrupts
