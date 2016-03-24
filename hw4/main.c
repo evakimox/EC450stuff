@@ -1,34 +1,22 @@
 asm(" .length 10000");
 asm(" .width 132");
-// Oct 2015
-// TimerTone0 == produces a 1 Khz tone using TimerA, Channel 0
-// Toggled on and off with a button
-// Using the timer in up mode with NO INTERRUPT
-//
-// Sound is turned on and off by directly manipulating
-// the TACCTL0 register.  The half period is not dynamically
-// updated (though it can be changed in the debugger by
-// changing TACCR0.
-// The pushbutton is not debounced in any way!
-
 #include "msp430g2553.h"
-//-----------------------
-// The following definitions allow us to adjust some of the port properties
-// for the example:
-
-// define the bit mask (within P1) corresponding to output TA0
 #define TA0_BIT 0x02
+#define BUTTON_BIT 0x08
+volatile unsigned int initialHalfPeriod = 1000;
 #define ADC_INPUT_BIT_MASK 0x10
 #define ADC_INCH INCH_4
+volatile unsigned int i = 0;
 
-volatile unsigned int initialHalfPeriod = 500;
-
-void init_timer(void);
+void init_timer(void); // routine to setup the timer
+void init_button(void); // routine to setup the button
+//adc:
 void init_adc(void);
 void start_conversion(void);
 int get_result(void);
-
 volatile int latest_result;
+
+
 /* basic adc operations */
 void start_conversion(){
 	ADC10CTL0 |= ADC10SC;
@@ -57,35 +45,61 @@ void init_adc(){
 			;
 }
 
-// ++++++++++++++++++++++++++
 void main(){
 	WDTCTL = WDTPW + WDTHOLD; // Stop watchdog timer
 	BCSCTL1 = CALBC1_1MHZ;    // 1Mhz calibration for clock
 	DCOCTL  = CALDCO_1MHZ;
+
+	init_timer();  // initialize timer
+	init_button(); // initialize the button
 	init_adc();
+
+	_bis_SR_register(GIE/*+LPM0_bits*/);// enable general interrupts and power down CPU
 
 	while(1){
 		start_conversion();
-		latest_result=get_result();
-		init_timer();  // initialize timer
+		latest_result = get_result();
+		int i = 0;
+		initialHalfPeriod=latest_result;
+		while(i<500){
+		TA0CCR0 = initialHalfPeriod-1;
+		i++;
+		}
 	}
-
 }
 
 // +++++++++++++++++++++++++++
 // Sound Production System
-
 void init_timer(){              // initialization and start of timer
 	TA0CTL |= TACLR;            // reset clock
 	TA0CTL = TASSEL_2+ID_0+MC_1;// clock source = SMCLK
 	                            // clock divider=1
 	                            // UP mode
 	                            // timer A interrupt off
-	TA0CCTL0=OUTMOD_4; // compare mode, output mode 0, no interrupt enabled
+	TA0CCTL0=0; // compare mode, output mode 0, no interrupt enabled
 	TA0CCR0 = initialHalfPeriod-1; // in up mode TAR=0... TACCRO-1
 	P1SEL|=TA0_BIT; // connect timer output to pin
 	P1DIR|=TA0_BIT;
 }
 
+void init_button(){
+// All GPIO's are already inputs if we are coming in after a reset
+	P1OUT |= BUTTON_BIT; // pullup
+	P1REN |= BUTTON_BIT; // enable resistor
+	P1IES |= BUTTON_BIT; // set for 1->0 transition
+	P1IFG &= ~BUTTON_BIT;// clear interrupt flag
+	P1IE  |= BUTTON_BIT; // enable interrupt
+}
+
+void interrupt button_handler(){
+// check interrupt comes from the desired bit...
+// (if not, just ignore -- cannot happen in this case)
+	if (P1IFG & BUTTON_BIT){
+		P1IFG &= ~BUTTON_BIT; // reset the interrupt flag
+		TACCTL0 ^= OUTMOD_4; // toggle outmod between 0 and 4 (toggle)
+	}
+}
+ISR_VECTOR(button_handler,".int02") // declare interrupt vector
+// +++++++++++++++++++++++++++
 
 
