@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v4.2.1                      
 ******************************************************************************
->> Linked Wed Mar 16 20:28:32 2016
+>> Linked Thu Mar 17 22:26:28 2016
 
 OUTPUT FILE NAME:   <Musix.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 0000cf14
@@ -19,7 +19,7 @@ MEMORY CONFIGURATION
   INFOC                 00001040   00000040  00000000  00000040  RWIX
   INFOB                 00001080   00000040  00000000  00000040  RWIX
   INFOA                 000010c0   00000040  00000000  00000040  RWIX
-  FLASH                 0000c000   00003fe0  00001312  00002cce  RWIX
+  FLASH                 0000c000   00003fe0  00001318  00002cc8  RWIX
   INT00                 0000ffe0   00000002  00000000  00000002  RWIX
   INT01                 0000ffe2   00000002  00000000  00000002  RWIX
   INT02                 0000ffe4   00000002  00000002  00000000  RWIX
@@ -94,17 +94,17 @@ section   page    origin      length       input sections
                   0000cfba    00000004                     : exit.obj (.text:abort)
                   0000cfbe    00000002     main.obj (.text:AnotherWDT)
 
-.const     0    0000cfc0    00000336     
-                  0000cfc0    00000140     main.obj (.const:notelength)
-                  0000d100    000000e4     main.obj (.const:notelength2)
-                  0000d1e4    000000a0     main.obj (.const:toneArray)
-                  0000d284    00000072     main.obj (.const:toneArray2)
+.const     0    0000cfc0    0000033c     
+                  0000cfc0    00000140     main.obj (.const:notelength2)
+                  0000d100    000000e8     main.obj (.const:notelength)
+                  0000d1e8    000000a0     main.obj (.const:toneArray2)
+                  0000d288    00000074     main.obj (.const:toneArray)
 
-.cinit     0    0000d2f6    0000001c     
-                  0000d2f6    00000013     (.cinit..data.load) [load image, compression = rle]
-                  0000d309    00000001     --HOLE-- [fill = 0]
-                  0000d30a    00000004     (__TI_handler_table)
-                  0000d30e    00000004     (__TI_cinit_table)
+.cinit     0    0000d2fc    0000001c     
+                  0000d2fc    00000013     (.cinit..data.load) [load image, compression = rle]
+                  0000d30f    00000001     --HOLE-- [fill = 0]
+                  0000d310    00000004     (__TI_handler_table)
+                  0000d314    00000004     (__TI_cinit_table)
 
 PORT1      0    0000ffe4    00000002     
                   0000ffe4    00000002     main.obj (.int02)
@@ -155,13 +155,13 @@ NMI        0    0000fffc    00000002
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0000d30e records: 1, size/record: 4, table size: 4
-	.data: load addr=0000d2f6, load size=00000013 bytes, run addr=00000200, run size=00000014 bytes, compression=rle
+__TI_cinit_table @ 0000d314 records: 1, size/record: 4, table size: 4
+	.data: load addr=0000d2fc, load size=00000013 bytes, run addr=00000200, run size=00000014 bytes, compression=rle
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000d30a records: 2, size/record: 2, table size: 4
+__TI_handler_table @ 0000d310 records: 2, size/record: 2, table size: 4
 	index: 0, handler: __TI_decompress_rle24
 	index: 1, handler: __TI_decompress_none
 
@@ -274,10 +274,10 @@ address    name
 0000fff4   WDT_interval_handler_ptr
 00000400   __STACK_END
 00000050   __STACK_SIZE
-0000d30e   __TI_CINIT_Base
-0000d312   __TI_CINIT_Limit
-0000d30a   __TI_Handler_Table_Base
-0000d30e   __TI_Handler_Table_Limit
+0000d314   __TI_CINIT_Base
+0000d318   __TI_CINIT_Limit
+0000d310   __TI_Handler_Table_Base
+0000d314   __TI_Handler_Table_Limit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
 0000cfaa   __TI_ISR_TRAP
@@ -425,18 +425,18 @@ ffffffff   binit
 0000ffe4   button_handler_ptr
 0000ced4   initTimerA
 0000cef4   initializebuttons
-00000210   length
-00000212   length2
+00000212   length
+00000210   length2
 0000ce20   main
 0000cf68   memcpy
 0000020e   mysong
-0000cfc0   notelength
-0000d100   notelength2
+0000d100   notelength
+0000cfc0   notelength2
 00000202   playflag
 00000204   restartflag
 0000020a   speedDivisor
-0000d1e4   toneArray
-0000d284   toneArray2
+0000d288   toneArray
+0000d1e8   toneArray2
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -538,8 +538,8 @@ address    name
 0000020a   speedDivisor
 0000020c   ToneAdjuster
 0000020e   mysong
-00000210   length
-00000212   length2
+00000210   length2
+00000212   length
 000003b0   _stack
 00000400   __STACK_END
 000010f8   CALDCO_16MHZ
@@ -681,14 +681,14 @@ address    name
 0000cfba   C$$EXIT
 0000cfba   abort
 0000cfbe   AnotherWDT
-0000cfc0   notelength
-0000d100   notelength2
-0000d1e4   toneArray
-0000d284   toneArray2
-0000d30a   __TI_Handler_Table_Base
-0000d30e   __TI_CINIT_Base
-0000d30e   __TI_Handler_Table_Limit
-0000d312   __TI_CINIT_Limit
+0000cfc0   notelength2
+0000d100   notelength
+0000d1e8   toneArray2
+0000d288   toneArray
+0000d310   __TI_Handler_Table_Base
+0000d314   __TI_CINIT_Base
+0000d314   __TI_Handler_Table_Limit
+0000d318   __TI_CINIT_Limit
 0000ffe4   __TI_int02
 0000ffe4   button_handler_ptr
 0000ffe6   __TI_int03

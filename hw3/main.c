@@ -34,13 +34,13 @@ volatile int PlayingNote = 0;
 unsigned int playflag=0;
 volatile unsigned int restartflag = 0;
 volatile float TimeCount=0;
-volatile unsigned int speedDivisor=3;
+volatile unsigned int speedDivisor=10;
 volatile unsigned int ToneAdjuster = 1;
 volatile unsigned int mysong = 1;
 
 // my own song
-int length = 80;
-const unsigned int toneArray[80]={AL, BL, C, G, E, E, D, E, O,
+int length2 = 80;
+const unsigned int toneArray2[80]={AL, BL, C, G, E, E, D, E, O,
 		D, E, G, D, BL, C, BL, BL, AL, EL, O,
 		AL, BL, C, G, E, E, D, E,
 		D, E, G, E, G, CH, B, A, E,
@@ -50,7 +50,7 @@ const unsigned int toneArray[80]={AL, BL, C, G, E, E, D, E, O,
 		AL, BL, C, G, E, E, D, E, O,
 		D, E, G, E, G, CH, B, CH, B, A,
 		A, B, A};
-const float notelength[80]={2, 1, 1, 1, 2, 1, 0.5, 4.5, 2,
+const float notelength2[80]={2, 1, 1, 1, 2, 1, 0.5, 4.5, 2,
 		1, 1, 1, 1, 1, 1, 2, 1, 0.5, 4.5, 3,
 		2, 1, 1, 1, 2, 1, 0.5, 6.5,
 		1, 1, 1, 1, 1, 1, 1.5, 1.5, 2,
@@ -62,25 +62,21 @@ const float notelength[80]={2, 1, 1, 1, 2, 1, 0.5, 4.5, 2,
 		1, 8, 8};
 
 //Joy to the world
-int length2 = 57;
-const unsigned int toneArray2[57]={
-CH,B,A,G, F,E,D,C,
-G,A, A,B, B,CH, CH, CH, B,A,G,
-G,F,E,CL,CL,B,A,G,G,F,E,
-E,E,E,E,E,F,G,
-F,E,D,D,D,D,E,
-F,E,D,E,C,A,G,F,E,F,
-E,D,C
-};
-const float notelength2[57]={
-4,3,1,6,2,4,4,6,
-2,6,2,6,2,6,2,2,2,2,2,
-3,1,2,2,2,2,2,2,3,1,2,
-2,2,2,2,1,1,6,
-1,1,2,2,2,1,1,
-6,1,1,2,4,2,3,1,2,2,
-4,4,8
-};
+int length = 58;
+const unsigned int toneArray[58]={CH,B,A,G, F,E,D,C,
+		G,A, A,B, B,CH, CH, CH, B,A,G,
+		G,F,E,CH,CH,B,A,G,G,F,E,
+		E,E,E,E,E,F,G,
+		F,E,D,D,D,D,E,
+		F,E,D,E,C,A,G,F,E,F,
+		E,D,C,O};
+const float notelength[58]={4,3,1,6,2,4,4,6,
+		2,6,2,6,2,6,2,2,2,2,2,
+		3,1,2,2,2,2,2,2,3,1,2,
+		2,2,2,2,1,1,6,
+		1,1,2,2,2,1,1,
+		6,1,1,2,4,2,3,1,2,2,
+		4,4,8,8};
 
 //functions used but defined later
 void initTimerA();
@@ -127,72 +123,72 @@ void initTimerA(){
 void PlaySong(){
 	//Internal Variables
 	unsigned int playingSong=1;
-if(mysong){
+	if(mysong){
 	//Play until the counter hits the end
-	while (playingSong){
-		TACCR0 = (toneArray[PlayingNote]/ToneAdjuster)-1;
-		TimeCount=0;													//set TimeCount to 0
-		TACCTL0 = CCIE + OUTMOD_4;
-		while (TimeCount < notelength[PlayingNote]/speedDivisor){
-			//catch the restart flag at any time
-			if(!mysong){
-				TACCTL0 = CCIE;
-				return;
+		while (playingSong){
+			TACCR0 = (toneArray[PlayingNote]/ToneAdjuster)-1;
+			TimeCount=0;													//set TimeCount to 0
+			TACCTL0 = CCIE + OUTMOD_4;
+			while (TimeCount < notelength[PlayingNote]/speedDivisor){
+				//catch the restart flag at any time
+				if(!mysong){
+					TACCTL0 = CCIE;
+					return;
+				}
+				if(restartflag){
+					PlayingNote = -1;
+					restartflag = 0;
+					TACCTL0 = CCIE;
+				}
 			}
-			if(restartflag){
-				PlayingNote = -1;
-				restartflag = 0;
-				TACCTL0 = CCIE;
+			TimeCount=0;				//set TimeCount to 0
+			TACCTL0 = CCIE;				//turn sound off when one tone finishes
+			while(TimeCount < 0.08){
+				//do nothing and wait, this is notes seperator
 			}
-		}
-		TimeCount=0;				//set TimeCount to 0
-		TACCTL0 = CCIE;				//turn sound off when one tone finishes
-		while(TimeCount < 0.08){
-			//do nothing and wait, this is notes seperator
-		}
-		TimeCount = 0;
-		if (PlayingNote >= length-1){	//when the whole piece is finished
-			playingSong = 0;
-			PlayingNote = 0;
-		}
-		else{
-			PlayingNote += 1;
-		}
-	}//end outer while loop
-}
-else{
-	//Play until the counter hits the end
-	while (playingSong){
-		TACCR0 = (toneArray2[PlayingNote]/ToneAdjuster)-1;
-		TimeCount=0;													//set TimeCount to 0
-		TACCTL0 = CCIE + OUTMOD_4;
-		while (TimeCount < notelength2[PlayingNote]/speedDivisor){
-			//catch the restart flag at any time
-			if(mysong){
-				TACCTL0 = CCIE;
-				return;
+			TimeCount = 0;
+			if (PlayingNote >= length-1){	//when the whole piece is finished
+				playingSong = 0;
+				PlayingNote = 0;
 			}
-			if(restartflag){
-				PlayingNote = -1;
-				restartflag = 0;
+			else{
+				PlayingNote += 1;
 			}
-		}
-		TimeCount=0;				//set TimeCount to 0
-		TACCTL0 = CCIE;				//turn sound off when one tone finishes
-		while(TimeCount < 0.08){
-			//do nothing and wait, this is notes seperator
-		}
-		TimeCount = 0;
-		if (PlayingNote >= length2-1){	//when the whole piece is finished
-			playingSong = 0;
-			PlayingNote = 0;
-		}
-		else{
-			PlayingNote += 1;
-		}
-	}//end outer while loop
-}
-TACCTL0 = CCIE;
+		}//end outer while loop
+	}//end playing joy to the world
+	else{
+		//Play until the counter hits the end
+		while (playingSong){
+			TACCR0 = (toneArray2[PlayingNote]/ToneAdjuster)-1;
+			TimeCount=0;													//set TimeCount to 0
+			TACCTL0 = CCIE + OUTMOD_4;
+			while (TimeCount < notelength2[PlayingNote]/speedDivisor){
+				//catch the restart flag at any time
+				if(mysong){
+					TACCTL0 = CCIE;
+					return;
+				}
+				if(restartflag){
+					PlayingNote = -1;
+					restartflag = 0;
+				}
+			}
+			TimeCount=0;				//set TimeCount to 0
+			TACCTL0 = CCIE;				//turn sound off when one tone finishes
+			while(TimeCount < 0.08){
+				//do nothing and wait, this is notes seperator
+			}
+			TimeCount = 0;
+			if (PlayingNote >= length2-1){	//when the whole piece is finished
+				playingSong = 0;
+				PlayingNote = 0;
+			}
+			else{
+				PlayingNote += 1;
+			}
+		}//end outer while loop
+	}	//end playing Tori no uta
+	TACCTL0 = CCIE;
 }//end PlaySong
 
 
@@ -266,7 +262,6 @@ void interrupt WDT_interval_handler(){
 	}
 }
 
-/*------------------------------------------*/
 //Declare interrupt vectors.
 ISR_VECTOR(button_handler,".int02")
 ISR_VECTOR(AnotherWDT,".int09")
