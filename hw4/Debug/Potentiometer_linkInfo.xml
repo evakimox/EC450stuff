@@ -2,7 +2,7 @@
 <link_info>
    <banner>MSP430 Linker PC v4.2.1</banner>
    <copyright>Copyright (c) 2003-2013 Texas Instruments Incorporated</copyright>
-   <link_time>0x56f36dd6</link_time>
+   <link_time>0x571d4c98</link_time>
    <link_errors>0x0</link_errors>
    <output_file>Potentiometer.out</output_file>
    <entry_point>

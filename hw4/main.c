@@ -2,7 +2,7 @@ asm(" .length 10000");
 asm(" .width 132");
 #include "msp430g2553.h"
 #define TA0_BIT 0x02
-#define BUTTON_BIT 0x08
+#define BUTTON_BIT 0x01
 volatile unsigned int initialHalfPeriod = 1000;
 #define ADC_INPUT_BIT_MASK 0x10
 #define ADC_INCH INCH_4
